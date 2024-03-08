@@ -54,6 +54,7 @@ public class ApplicationController {
     }
 
     @Secured({"USER", "OPERATOR", "ADMIN"})
+    @GetMapping("/")
     public ResponseEntity<?> updateApp(@RequestParam(value = "status", required = false) String status,
                                        @RequestParam(value = "username", required = false) String username,
                                        @RequestParam(value = "offset") int offset,
