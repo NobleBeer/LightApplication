@@ -9,4 +9,6 @@
 - порефакторить
 - добавить тесты
 - добавить тестовых юзеров
-- CustomResponseEntityExceptionHandler? 
+- CustomResponseEntityExceptionHandler?
+- переехать на Optional?
+- логи, индексы, кэшировние
