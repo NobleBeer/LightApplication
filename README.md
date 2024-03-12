@@ -1,0 +1,14 @@
+# Доделать
+- http session - getAllApps 
+- потестить endpoints
+- getAppById
+- обработка заявок
+- выдача roles
+- TokenBlackList
+- refresh token
+- порефакторить
+- добавить тесты
+- добавить тестовых юзеров
+- CustomResponseEntityExceptionHandler?
+- переехать на Optional?
+- логи, индексы, кэшировние
