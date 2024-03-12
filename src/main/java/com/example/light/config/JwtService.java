@@ -37,7 +37,8 @@ public class JwtService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .verifyWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)))
+                .verifyWith(Keys.hmacShaKeyFor(jwtSecret
+                        .getBytes(StandardCharsets.UTF_8)))
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
@@ -63,7 +64,9 @@ public class JwtService {
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
-                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8)), Jwts.SIG.HS256).compact();
+                .signWith(Keys.hmacShaKeyFor(jwtSecret
+                        .getBytes(StandardCharsets.UTF_8)), Jwts.SIG.HS256)
+                .compact();
     }
 
 }

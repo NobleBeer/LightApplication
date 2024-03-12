@@ -48,18 +48,19 @@ public class AuthController {
         this.roleRepository = roleRepository;
     }
 
-    //TODO: Это костыль, скип или доделать
+    //TODO: Это костыль
     @PostMapping("/signin")
-    public ResponseEntity<?> createUser(@RequestBody AuthRequestDTO authRequestDTO) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody AuthRequestDTO authRequestDTO) {
         log.debug("password {}", authRequestDTO.getPassword());
         User user = new User();
-        // Хешируем пароль перед сохранением в базу данных
         user.setName(authRequestDTO.getUsername());
         user.setPassword(passwordEncoder.encode(authRequestDTO.getPassword()));
+
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName(ERole.USER);
         roles.add(userRole);
         user.setRoles(roles);
+
         userDetailsService.createUser(user);
 
         return ResponseEntity.ok("User was created");
@@ -70,6 +71,7 @@ public class AuthController {
         CustomUserDetails userDetails = userDetailsService.loadUserByUsername(authRequestDTO.getUsername());
         log.debug("username {}", userDetails.getUsername());
         if (passwordEncoder.matches(authRequestDTO.getPassword(), userDetails.getPassword())) {
+
             return JwtResponseDTO.builder()
                     .accessToken(jwtService.generateToken(authRequestDTO.getUsername())).build();
         } else {

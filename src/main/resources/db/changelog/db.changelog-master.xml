@@ -64,4 +64,12 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="5" author="noblebeer">
+        <sql>
+            ALTER TABLE roles ALTER COLUMN name TYPE smallint USING (name::smallint);
+        </sql>
+    </changeSet>
+
+
 </databaseChangeLog>
